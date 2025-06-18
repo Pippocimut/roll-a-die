@@ -5,7 +5,7 @@ import {Index} from "../CreateDialog";
 import {toast} from "react-toastify";
 import {type ButtonData, useButtonList} from "../../../../data/buttonListDAO.ts";
 import {type Tag, useTags} from "../../../../data/tagsDAO.ts";
-import {Combobox} from "@headlessui/react";
+import {Combobox, ComboboxInput, ComboboxOption, ComboboxOptions} from "@headlessui/react";
 
 const colors = [
     "bg-red-500",
@@ -113,22 +113,22 @@ export function ButtonCreatePopup(props: Props) {
             </div>
             <div className={"flex flex-row gap-2 relative"}>
                 <Combobox value={tag} onChange={handleTagChange}>
-                    <Combobox.Input
+                    <ComboboxInput
                         placeholder={"Tag"}
                         onChange={(e) => setTag(e.target.value)}
                         className={"p-4 mx-4 my-auto border-2 border-gray-500 rounded-lg w-60 text-left max-h-10 align-middle"}
                         displayValue={(tag: string) => tag || ""}
                     />
                     {!(filteredTags.length === 0 && tag !== "") && (
-                        <Combobox.Options
+                        <ComboboxOptions
                             className={"absolute z-10 top-18 overflow-auto text-base shadow-lg ring-1 bg-neutral-800 ring-black ring-opacity-5 focus:outline-none sm:text-sm my-2 mx-4 border-2 border-gray-500 rounded-lg w-60 text-left"}>
                             {filteredTags.map((tag) => (
-                                <Combobox.Option value={tag.name} key={tag.name}
+                                <ComboboxOption value={tag.name} key={tag.name}
                                                  className={"cursor-pointer w-full select-none py-2 px-4  bg-neutral-800 hover:text-white hover:bg-neutral-500 rounded-md"}>
                                     {tag.name}
-                                </Combobox.Option>
+                                </ComboboxOption>
                             ))}
-                        </Combobox.Options>)}
+                        </ComboboxOptions>)}
 
                 </Combobox>
                 <select className={"p-4 m-4 w-15 h-15 border-2 rounded-lg " + buttonColor}
